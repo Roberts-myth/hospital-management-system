@@ -1,0 +1,254 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.header {
+    background-color: rgb(204, 244, 247);
+    overflow: hidden;
+}
+
+.main {
+    flex: 1;
+    padding: 1rem;
+}
+
+.footer {
+    background-color: orange;
+    padding: 1rem;
+    color: white;
+}
+
+.header a {
+    /* Any hyperlinks with header tag are displayed as styled below */
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.dropdown {
+    /* Dropdown menus and their hyperlink dropdowns float to the left, no scrollbars for dropdown*/
+    float: left;
+    overflow: hidden;
+}
+
+#logout {
+    display: block;
+    float: right;
+}
+
+.dropdown .dropbtn {
+    /* This styles the navigation bar buttons. */
+    font-size: 16px;
+    /* white background, padded between content and border, same font and background as page */
+    border: none;
+    outline: none;
+    color: rgb(0, 0, 0);
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.header a:hover,
+.dropdown:hover .dropbtn {
+    /*  When dropdown buttons or dropdown content buttons are hovered over */
+    background-color: rgb(116, 195, 201);
+}
+
+.dropdown-content {
+    /* Styles dropdown content shown (i.e. the choice buttons) */
+    display: none;
+    /* Colour is white, bit of black shadow  */
+    position: absolute;
+    /* position absolute allows it to "open over" the navbar's section of page */
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    /* Styles the dropdown content anchor hyperlinks to look like a dropdown menu */
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    /* When dropdown content is hovered over, background is light grey */
+    background-color: #ddd;
+    color: black;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+
+/* General form styling */
+form {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+/* Style all input fields */
+input {
+    /*[type="text"], input[type="number"], input[type="email"], input[type="date"]  */
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Style the select dropdown */
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Style the submit button */
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: rgb(255, 251, 0);
+    color: orange;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    /* Slightly rounded corners */
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+thead tr {
+    background-color: grey;
+    color: #ffffff;
+    text-align: left;
+}
+
+th,
+td {
+    padding: 12px 15px;
+}
+
+tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+tbody tr:last-of-type {
+    border-bottom: 2px solid orange;
+}
+
+/* Button styles */
+button {
+    padding: 8px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 4px;
+    /* Slightly rounded corners */
+    color: white;
+    background-color: orange;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn {
+    background-color: #e74c3c;
+}
+
+.delete-btn:hover {
+    background-color: #a53023;
+    color: #ffffff;
+}
+
+.update-btn {
+    background-color: #f1c40f;
+}
+
+.update-btn:hover {
+    background-color: #f39c12;
+    color: #ffffff;
+}
+
+/* Pagination */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+
+.pagination a {
+    /* Pagination text colour is orange, light grey boarder, padding */
+    text-decoration: none;
+    color: orange;
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    /* Slightly rounded corners */
+}
+
+.pagination a:hover {
+    background-color: #ddd;
+}
+
+.pagination .active a {
+    /* Colour of the active page is orange   */
+    background-color: orange;
+    color: white;
+    border: 1px solid orange;
+}
+
+input:read-only {
+    /* Read only input boxes are grey */
+    background-color: rgb(239, 239, 239);
+}

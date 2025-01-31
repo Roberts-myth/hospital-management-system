@@ -182,11 +182,12 @@ tbody tr:nth-of-type(even) {
 }
 
 tbody tr:last-of-type {
-    border-bottom: 2px solid orange;
+    border-bottom: 2px solid rgb(204, 244, 247);
 }
 
 .delete-btn {
     background-color: #e74c3c;
+    color:#ffffff;
 }
 
 .delete-btn:hover {
@@ -196,6 +197,7 @@ tbody tr:last-of-type {
 
 .update-btn {
     background-color: #f1c40f;
+    color:#ffffff;
 }
 
 .update-btn:hover {
@@ -219,7 +221,7 @@ tbody tr:last-of-type {
 .pagination a {
     /* Pagination text colour is orange, light grey boarder, padding */
     text-decoration: none;
-    color: orange;
+    color: rgb(98, 169, 174);
     padding: 8px 16px;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -232,9 +234,9 @@ tbody tr:last-of-type {
 
 .pagination .active a {
     /* Colour of the active page is orange   */
-    background-color: orange;
-    color: white;
-    border: 1px solid orange;
+    background-color: rgb(172, 243, 248);
+    color: rgb(0, 0, 0);
+    border: 1px solid rgb(172, 243, 248);
 }
 
 input:read-only {

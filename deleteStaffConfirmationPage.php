@@ -14,9 +14,23 @@
   <div class="main-container">
     <div id="navbar-container"></div> <!-- Navbar will be loaded here -->
     <div class="main">
-      <h1>Are you sure that you want to delete [Staff Member Name] from the database?</h1>
+      <?php 
+        $db = new SQLite3("Hospital Database.db");
+        $staffID = isset($_GET['StaffID']) ? $_GET['StaffID'] : ' ';
+
+        $statement = $db->prepare("SELECT o.title, s.first_name || ' ' || coalesce(s.middle_name || '', '') || ' ' || s.last_name AS 'name'
+                                   FROM Staff s INNER JOIN Occupation o ON o.OccupationID = s.OccupationID
+                                   WHERE s.StaffID = :staffID;");
+        $statement->bindValue(':staffID', $staffID, SQLITE3_INTEGER);
+        $result = $statement->execute();
+        $record = $result->fetchArray(SQLITE3_ASSOC);
+        $occupation = $record['title'];
+        $name = $record['name'];
+
+      ?>
+      <h1>Are you sure that you want to delete <?php echo $occupation, " ", $name; ?> from the Patient table?</h1>
       <h2>Deleting a record is permanent, and can't be reversed.</h2>
-      <a href="deleteStaff.html"><button class="delete-btn" style="width: 15%">Yes, delete [Staff Member Name]</button></a>
+      <a href="deleteStaff.html"><button class="delete-btn" style="width: 15%">Yes, delete <?php echo $occupation, " ", $name; ?></button></a>
     </div>
   </div>
 

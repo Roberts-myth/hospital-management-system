@@ -28,7 +28,7 @@
         $name = $record['name'];
 
       ?>
-      <h1>Are you sure that you want to delete <?php echo $occupation, " ", $name; ?> from the Patient table?</h1>
+      <h1>Are you sure that you want to delete <?php echo $occupation, " ", $name; ?> from the Staff table?</h1>
       <h2>Deleting a record is permanent, and can't be reversed.</h2>
       <a href="deleteStaff.html"><button class="delete-btn" style="width: 15%">Yes, delete <?php echo $occupation, " ", $name; ?></button></a>
     </div>

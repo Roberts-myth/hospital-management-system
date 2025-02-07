@@ -38,7 +38,7 @@
           <option value="Surgeon">Surgeon</option>
         </select>
 
-        <label for="country">Country</label>
+        <!-- <label for="country">Country</label>
         <select id="country" name="country">
           <option value="">Select a country</option>
           <option value="United Kingdom">United Kingdom</option>
@@ -289,7 +289,7 @@
         </select>
 
         <label for="city">City</label>
-        <input type="text" id="city" name="city" placeholder="City">
+        <input type="text" id="city" name="city" placeholder="City"> -->
 
         <button type="submit">Search</button>
       </form>

@@ -14,19 +14,28 @@
   <div class="main-container">
     <div id="navbar-container"></div> <!-- Navbar will be loaded here -->
     <div class="main">
+
         <h2>Create New Staff</h2>
-        <form action="createNewStaff.html" method="post">
+        <form action="createNewStaff.php" method="post">
             
           <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
           <input type="text" id="middle-name" name="middle-name" placeholder="Middle Name (optional)">
           <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
-          <select id="occupation" name="occupation" required>
-            <option value="">Select an occupation</option>
-            <option value="Doctor">Doctor</option>
-            <option value="Nurse">Nurse</option>
-            <option value="Psychiatrist">Psychiatrist</option>
-            <option value="Surgeon">Surgeon</option>
-          </select>
+
+          <?php
+            $db = new SQLite3('Hospital Database.db');
+            $query = "SELECT OccupationID, title FROM Occupation;";
+            $result = $db->query($query);
+            echo '<select id="occupation" name="occupation" required>';
+            echo '<option value="">Select an occupation</option>';
+
+            while ($record = $result->fetchArray(SQLITE3_ASSOC)) {
+              echo '<option value="' . $record['OccupationID'] . '">' . $record['title'] . '</option>';
+            }
+            echo '</select>';
+            $db->close();
+          ?>
+
           <input type="text" id="contact-number" name="contact-number" placeholder="Contact Number" required>
           <input type="text" id="address-line-1" name="address-line-1" placeholder="Address Line 1" required>
           <input type="text" id="address-line-2" name="address-line-2" placeholder="Address Line 2 (optional)">
@@ -281,7 +290,7 @@
             <option value="Zimbabwe">Zimbabwe</option>
           </select>
             
-          <button>Create New Staff</button>
+          <button type="submit">Create New Staff</button>
         </form>  
     </div>
   </div>

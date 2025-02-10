@@ -72,7 +72,7 @@
               <td>' . $turnaroundTime . '</td>
               <td>' . $description . '</td>
               <td><a href="updateLabTestTypePage.php?LabTestTypeID=' . $id . '"><button class="update-btn">Update</button></a></td>
-              <td><a href="deleteLabTestTypeConfirmationPage.php?LabTestTypeID=' . $id . '"><button class="delete-btn">Delete</button></a></td>                    
+              <td><a href="deleteLabTestTypeConfirmationPage.php?LabTestTypeID=' . $id . '"><button class="delete-btn">Archive</button></a></td>                    
           </tr>';
           }
 

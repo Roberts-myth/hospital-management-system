@@ -81,7 +81,7 @@
               <td>' . $dateOfTest . '</td>
               <td>' . $description . '</td>
               <td><a href="updateLabTestResultPage.php?LabTestResultID=' . $id . '"><button class="update-btn">Update</button></a></td>
-              <td><a href="deleteLabTestResultConfirmationPage.php?LabTestResultID=' . $id . '"><button class="delete-btn">Delete</button></a></td>                    
+              <td><a href="deleteLabTestResultConfirmationPage.php?LabTestResultID=' . $id . '"><button class="delete-btn">Archive</button></a></td>                    
           </tr>';
           }
 

@@ -121,6 +121,16 @@ input {
     border-radius: 4px;
 }
 
+textarea {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    min-width: 278px; 
+    max-width: 278px; 
+    min-height: 150px;
+}
+
 /* Style the select dropdown */
 select {
     width: 100%;

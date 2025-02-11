@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
-  <link rel="stylesheet" href="style.css" />
-  <script src="script.js"></script>
+  <link rel="stylesheet" href="../style.css" />
+  <script src="../script.js"></script>
   <title>Hospital Management System</title>
 </head>
 
@@ -16,7 +16,7 @@
     <div id="navbar-container"></div>
     <!-- Navbar will be loaded here -->
     <div class="main">
-      <h1>List of Lab Test Results</h1>
+      <h1>List of Lab Test Types</h1>
 
       <form>
         <label>Search fields will be here</label>
@@ -24,7 +24,7 @@
       </form>
 
       <?php
-      $db = new SQLite3('Hospital Database.db');
+      $db = new SQLite3('../Hospital Database.db');
 
 
       $recordsPerPage = 5;
@@ -33,29 +33,22 @@
         $currentPage = 1;
       }
       $offset = ($currentPage - 1) * $recordsPerPage;
-      $totalQuery = "SELECT COUNT(*) AS 'Total' FROM LabTestResult";
+      $totalQuery = "SELECT COUNT(*) AS 'Total' FROM LabTestType";
       $totalResult = $db->query($totalQuery);
       $totalQueryRecord = $totalResult->fetchArray(SQLITE3_ASSOC);
       $totalOfRecords = $totalQueryRecord['Total'];
       $totalPages = ceil($totalOfRecords / $recordsPerPage);
 
-      $query = "SELECT ltr.LabTestResultID, ltt.name AS 'Test Type', 
-      p.first_name || ' ' || coalesce(p.middle_name || '', '') || ' ' || p.last_name AS 'Patient Name',
-      ltr.date_of_test, ltr.result_description
-      FROM LabTestResult ltr
-      INNER JOIN LabTestType ltt ON ltt.LabTestTypeID = ltr.LabTestTypeID
-      INNER JOIN Patient p ON ltr.PatientID = p.PatientID
-      LIMIT $recordsPerPage OFFSET $offset;";
+      $query = "SELECT * FROM LabTestType LIMIT $recordsPerPage OFFSET $offset;";
       $result = $db->query($query);
       ?>
 
       <table>
         <thead>
           <tr>
-            <th>Lab Test Result ID</th>
-            <th>Test Type</th>
-            <th>Patient Name</th>
-            <th>Date of Test</th>
+            <th>Lab Test Type ID</th>
+            <th>Name</th>
+            <th>Turnaround Time (Hours)</th>
             <th>Description</th>
             <th style="text-align: center" colspan="2" align="center">
               Action
@@ -68,20 +61,18 @@
           <?php
 
           while ($record = $result->fetchArray(SQLITE3_ASSOC)) {
-            $id = $record['LabTestResultID'];
-            $testType = $record['Test Type'];
-            $patientName = $record['Patient Name'];
-            $dateOfTest = date("jS F Y", strtotime($record['date_of_test']));
-            $description = $record['result_description'];
+            $id = $record['LabTestTypeID'];
+            $name = $record['name'];
+            $turnaroundTime = $record['turnaround_time'];
+            $description = $record['description'];
 
             echo '<tr>
               <td>' . $id . '</td>
-              <td>' . $testType . '</td>
-              <td>' . $patientName . '</td>
-              <td>' . $dateOfTest . '</td>
+              <td>' . $name . '</td>
+              <td>' . $turnaroundTime . '</td>
               <td>' . $description . '</td>
-              <td><a href="updateLabTestResultPage.php?LabTestResultID=' . $id . '"><button class="update-btn">Update</button></a></td>
-              <td><a href="deleteLabTestResultConfirmationPage.php?LabTestResultID=' . $id . '"><button class="delete-btn">Archive</button></a></td>                    
+              <td><a href="updateLabTestTypePage.php?LabTestTypeID=' . $id . '"><button class="update-btn">Update</button></a></td>
+              <td><a href="deleteLabTestTypeConfirmationPage.php?LabTestTypeID=' . $id . '"><button class="delete-btn">Archive</button></a></td>                    
           </tr>';
           }
 

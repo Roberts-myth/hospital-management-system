@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
-  <link rel="stylesheet" href="style.css" />
-  <script src="script.js"></script>
+  <link rel="stylesheet" href="../style.css" />
+  <script src="../script.js"></script>
   <title>Hospital Management System</title>
 </head>
 
@@ -16,15 +16,19 @@
     <div id="navbar-container"></div>
     <!-- Navbar will be loaded here -->
     <div class="main">
-      <h1>List of Diagnosis Types</h1>
+      <h1>List of Occupations</h1>
 
       <form>
-        <label>Search fields will be here</label>
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" placeholder="Title">
+
+        <label for="minimum-pay-per-hour">Minimum Pay Per Hour (£)</label>
+        <input type="number" id="minimum-pay-per-hour" name="minimum-pay-per-hour" placeholder="Minimum Pay Per Hour (£)" step="0.01" min="0.01">
         <button type="submit">Search</button>
       </form>
 
       <?php
-      $db = new SQLite3('Hospital Database.db');
+      $db = new SQLite3('../Hospital Database.db');
 
 
       $recordsPerPage = 5;
@@ -33,22 +37,22 @@
         $currentPage = 1;
       }
       $offset = ($currentPage - 1) * $recordsPerPage;
-      $totalQuery = "SELECT COUNT(*) AS 'Total' FROM DiagnosisType";
+      $totalQuery = "SELECT COUNT(*) AS 'Total' FROM Occupation";
       $totalResult = $db->query($totalQuery);
       $totalQueryRecord = $totalResult->fetchArray(SQLITE3_ASSOC);
       $totalOfRecords = $totalQueryRecord['Total'];
       $totalPages = ceil($totalOfRecords / $recordsPerPage);
 
-      $query = "SELECT * FROM DiagnosisType LIMIT $recordsPerPage OFFSET $offset;";
+      $query = "SELECT * FROM Occupation LIMIT $recordsPerPage OFFSET $offset;";
       $result = $db->query($query);
       ?>
 
       <table>
         <thead>
           <tr>
-            <th>Diagnosis Type ID</th>
+            <th>Occupation ID</th>
             <th>Title</th>
-            <th>Symptoms</th>
+            <th>Pay Per Hour (£)</th>
             <th style="text-align: center" colspan="2" align="center">
               Action
             </th>
@@ -60,16 +64,16 @@
           <?php
 
           while ($record = $result->fetchArray(SQLITE3_ASSOC)) {
-            $id = $record['DiagnosisTypeID'];
-            $diagnosisTitle = $record['title'];
-            $symptoms = $record['symptoms'];
+            $id = $record['OccupationID'];
+            $title = $record['title'];
+            $payPerHour = $record['pay_per_hour'];
 
             echo '<tr>
               <td>' . $id . '</td>
-              <td>' . $diagnosisTitle . '</td>
-              <td>' . $symptoms . '</td>
-              <td><a href="updateDiagnosisTypePage.php?DiagnosisTypeID=' . $id . '"><button class="update-btn">Update</button></a></td>
-              <td><a href="deleteDiagnosisTypeConfirmationPage.php?DiagnosisTypeID=' . $id . '"><button class="delete-btn">Archive</button></a></td>                    
+              <td>' . $title . '</td>
+              <td>' . $payPerHour . '</td>
+              <td><a href="updateOccupationPage.php?OccupationID=' . $id . '"><button class="update-btn">Update</button></a></td>
+              <td><a href="deleteOccupationConfirmationPage.php?OccupationID=' . $id . '"><button class="delete-btn">Delete</button></a></td>                    
           </tr>';
           }
 

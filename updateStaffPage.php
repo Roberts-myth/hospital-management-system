@@ -15,46 +15,76 @@
     <div id="navbar-container"></div> <!-- Navbar will be loaded here -->
     <div class="main">
         <h2>Update Staff</h2>
-        <form action="updateStaff.html" method="post">
+
+        <?php 
+          $db = new SQLite3('Hospital Database.db');
+          $staffID = isset($_GET['StaffID']) ? $_GET['StaffID'] : ' ';
+          $statement = $db->prepare("SELECT * FROM Staff WHERE StaffID = :staffID;");
+          $statement->bindValue(':staffID', $staffID, SQLITE3_INTEGER);
+          $result = $statement->execute();
+          $record = $result->fetchArray(SQLITE3_ASSOC);
+
+          $fName = $record['first_name'];
+          $mName = $record['middle_name'];
+          $lName = $record['last_name'];
+          $occupation = $record['OccupationID'];
+          $contactNumber = $record['contact_number'];
+          $addressLine1 = $record['address_line1'];
+          $addressLine2 = $record['address_line2'];
+          $city = $record['city'];
+          $postcode = $record['postcode'];
+          $country = $record['country'];          
+        
+        ?>
+        <form action="updateStaff.php" method="post">
           
           <label for="StaffID">Staff ID</label>
-          <input type="number" id="StaffID" name="StaffID" value="123456789" readonly>
+          <input type="number" id="StaffID" name="StaffID" value="<?php echo $staffID; ?>" readonly>
 
           <label for="first-name">First Name</label>
-          <input type="text" id="first-name" name="first-name" placeholder="First Name" value="Sample Data" required>
+          <input type="text" id="first-name" name="first-name" placeholder="<?php echo $fName; ?>" value="<?php echo $fName; ?>" required>
 
           <label for="middle-name">Middle Name</label>
-          <input type="text" id="middle-name" name="middle-name" placeholder="Middle Name (optional)" value="Sample Data">
+          <input type="text" id="middle-name" name="middle-name" placeholder="<?php echo $mName; ?>" value="<?php echo $mName; ?>">
 
           <label for="last-name">Last Name</label>
-          <input type="text" id="last-name" name="last-name" placeholder="Last Name" value="Sample Data" required>
+          <input type="text" id="last-name" name="last-name" placeholder="<?php echo $lName; ?>" value="<?php echo $lName; ?>" required>
 
           <label for="occupation">Occupation</label>
-          <select id="occupation" name="occupation" required>
-            <option value="">Select an occupation</option>
-            <option value="Doctor">Doctor</option>
-            <option value="Nurse">Nurse</option>
-            <option value="Psychiatrist">Psychiatrist</option>
-            <option value="Surgeon">Surgeon</option>
-          </select>       
+          <?php
+            $query = "SELECT OccupationID, title FROM Occupation;";
+            $result = $db->query($query);
+            echo '<select id="occupation" name="occupation" required>';
+            echo '<option value="">Select an occupation</option>';
+
+            while ($record = $result->fetchArray(SQLITE3_ASSOC)) {
+              if ($record['OccupationID'] == $occupation) {
+                echo '<option value="' . $record['OccupationID'] . '" selected>' . $record['title'] . '</option>';
+            } else {
+                echo '<option value="' . $record['OccupationID'] . '">' . $record['title'] . '</option>';
+            }
+            }
+            echo '</select>';
+            $db->close();
+          ?>
 
           <label for="contact-number">Contact Number</label>
-          <input type="text" id="contact-number" name="contact-number" placeholder="Contact Number" value="Sample Data"  required>
+          <input type="text" id="contact-number" name="contact-number" placeholder="<?php echo $contactNumber; ?>" value="<?php echo $contactNumber; ?>"  required>
 
           <label for="address-line-1">Address Line 1</label>
-          <input type="text" id="address-line-1" name="address-line-1" placeholder="Address Line 1" value="Sample Data" required>
+          <input type="text" id="address-line-1" name="address-line-1" placeholder="<?php echo $addressLine1; ?>" value="<?php echo $addressLine1; ?>" required>
 
           <label for="address-line-2">Address Line 2</label>
-          <input type="text" id="address-line-2" name="address-line-2" placeholder="Address Line 2 (optional)" value="Sample Data">
+          <input type="text" id="address-line-2" name="address-line-2" placeholder="<?php echo $addressLine2; ?>" value="<?php echo $addressLine2; ?>">
 
           <label for="city">City</label>
-          <input type="text" id="city" name="city" placeholder="City" value="Sample Data" required>
+          <input type="text" id="city" name="city" placeholder="<?php echo $city; ?>" value="<?php echo $city; ?>" required>
 
           <label for="postcode">Postcode</label>
-          <input type="text" id="postcode" name="postcode" placeholder="Postcode" value="Sample Data" required>
+          <input type="text" id="postcode" name="postcode" placeholder="<?php echo $postcode; ?>" value="<?php echo $postcode; ?>" required>
 
           <label for="country">Country</label>
-          <small><br>The staff's current country is Sample Data</small>
+          <small><br>The staff's current country is <?php echo $country; ?></small>
           <select id="country" name="country" required>
             <option value="">Select a country</option>
             <option value="United Kingdom">United Kingdom</option>

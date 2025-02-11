@@ -112,7 +112,7 @@
               <td>' . $postcode . '</td>
               <td>' . $country . '</td>
               <td><a href="updatePatientPage.php?PatientID=' . $id . '"><button class="update-btn">Update</button></a></td>
-              <td><a href="deletePatientConfirmationPage.php?PatientID=' . $id . '"><button class="delete-btn">Archive</button></a></td>                    
+              <td><a href="archivePatientConfirmationPage.php?PatientID=' . $id . '"><button class="delete-btn">Archive</button></a></td>                    
           </tr>';
           }
 

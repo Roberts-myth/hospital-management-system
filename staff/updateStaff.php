@@ -58,7 +58,8 @@
           } else {
               echo "<h1>Failed to update Staff.</h1>";
           }
-
+          
+          $db->close();
         }
 
       ?>

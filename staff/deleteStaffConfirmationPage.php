@@ -26,7 +26,7 @@
         $record = $result->fetchArray(SQLITE3_ASSOC);
         $occupation = $record['title'];
         $name = $record['name'];
-
+        $db->close();
       ?>
       <h1>Are you sure that you want to delete <?php echo $occupation, " ", $name; ?> from the Staff table?</h1>
       <h2>Deleting a record is permanent, and can't be reversed.</h2>

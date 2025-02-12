@@ -80,7 +80,7 @@
               <td>' . $dateOfDiagnosis . '</td>
               <td>' . $description . '</td>
               <td><a href="updatePatientDiagnosisPage.php?PatientDiagnosisID=' . $id . '"><button class="update-btn">Update</button></a></td>
-              <td><a href="deletePatientDiagnosisConfirmationPage.php?PatientDiagnosisID=' . $id . '"><button class="delete-btn">Archive</button></a></td>                    
+              <td><a href="archivePatientDiagnosisConfirmationPage.php?PatientDiagnosisID=' . $id . '"><button class="delete-btn">Archive</button></a></td>                    
           </tr>';
           }
 

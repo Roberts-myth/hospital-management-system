@@ -28,7 +28,8 @@
       ?>
       <h1>Are you sure that you want to archive <?php echo $name; ?> from the Patient table?</h1>
       <h2>Archiving a record is permanent, and can't be reversed.</h2>
-      <a href="archivePatient.php?PatientID=<?php echo $patientID; ?>"><button class="delete-btn" style="width: 15%">Yes, archive <?php echo $name; ?></button></a>
+      <a href="archivePatient.php?PatientID=<?php echo $patientID; ?>"><button class="delete-btn" style="width: 15%">Yes, archive the patient</button></a>
+      <button onclick="goBack()" class="undo-btn" style="width: 15%">No, go back</button>
     </div>
   </div>
 

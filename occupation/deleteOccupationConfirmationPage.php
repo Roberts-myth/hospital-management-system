@@ -27,7 +27,8 @@
       ?>
       <h1>Are you sure that you want to delete <?php echo $occupation; ?> from the Occupation table?</h1>
       <h2>Deleting a record is permanent, and can't be reversed.</h2>
-      <a href="deleteOccupation.php?OccupationID=<?php echo $occupationID; ?>"><button class="delete-btn" style="width: 15%">Yes, delete <?php echo $occupation; ?></button></a>
+      <a href="deleteOccupation.php?OccupationID=<?php echo $occupationID; ?>"><button class="delete-btn" style="width: 15%">Yes, delete the occupation</button></a>
+      <button onclick="goBack()" class="undo-btn" style="width: 15%">No, go back</button>
     </div>
   </div>
 

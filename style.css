@@ -129,6 +129,7 @@ textarea {
     min-width: 278px; 
     max-width: 278px; 
     min-height: 150px;
+    font-family: Arial, sans-serif;
 }
 
 /* Style the select dropdown */
@@ -193,6 +194,16 @@ tbody tr:nth-of-type(even) {
 
 tbody tr:last-of-type {
     border-bottom: 2px solid rgb(204, 244, 247);
+}
+
+.undo-btn {
+    background-color: grey;
+    color:#ffffff;
+}
+
+.undo-btn:hover {
+    background-color: rgb(101, 101, 101);
+    color:#ffffff;
 }
 
 .delete-btn {

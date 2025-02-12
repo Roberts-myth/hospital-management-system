@@ -6,3 +6,7 @@ function loadNavbar() { // fetches the html content of the navbar
       })
       .catch(error => console.error('Error loading navbar:', error));
 }
+
+function goBack() {
+  window.history.back();
+}

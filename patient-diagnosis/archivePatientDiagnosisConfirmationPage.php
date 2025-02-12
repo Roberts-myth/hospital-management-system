@@ -16,21 +16,23 @@
     <div class="main">
       <?php 
         $db = new SQLite3("../Hospital Database.db");
-        $staffID = isset($_GET['StaffID']) ? $_GET['StaffID'] : ' ';
+        $patientDiagnosisID = isset($_GET['PatientDiagnosisID']) ? $_GET['PatientDiagnosisID'] : ' ';
 
-        $statement = $db->prepare("SELECT o.title, s.first_name || ' ' || coalesce(s.middle_name || '', '') || ' ' || s.last_name AS 'name'
-                                   FROM Staff s INNER JOIN Occupation o ON o.OccupationID = s.OccupationID
-                                   WHERE s.StaffID = :staffID;");
-        $statement->bindValue(':staffID', $staffID, SQLITE3_INTEGER);
+        $statement = $db->prepare("SELECT p.first_name || ' ' || coalesce(p.middle_name || '', '') || ' ' || p.last_name AS 'name', dt.title
+                                   FROM Patient p 
+                                   INNER JOIN PatientDiagnosis pd ON pd.PatientID = p.PatientID
+                                   INNER JOIN DiagnosisType dt ON dt.DiagnosisTypeID = pd.DiagnosisTypeID
+                                   WHERE PatientDiagnosisID = :patientDiagnosisID;");
+        $statement->bindValue(':patientDiagnosisID', $patientDiagnosisID, SQLITE3_INTEGER);
         $result = $statement->execute();
         $record = $result->fetchArray(SQLITE3_ASSOC);
-        $occupation = $record['title'];
         $name = $record['name'];
+        $title = $record['title'];
         $db->close();
       ?>
-      <h1>Are you sure that you want to delete <?php echo $occupation, " ", $name; ?> from the Staff table?</h1>
-      <h2>Deleting a record is permanent, and can't be reversed.</h2>
-      <a href="deleteStaff.php?StaffID=<?php echo $staffID; ?>"><button class="delete-btn" style="width: 15%">Yes, delete the Staff member</button></a>
+      <h1>Are you sure that you want to archive <?php echo $name, "'s diagnosis (", $title, ")"; ?>  from the Patient Diagnosis table?</h1>
+      <h2>Archiving a record is permanent, and can't be reversed.</h2>
+      <a href="archivePatientDiagnosis.php?PatientDiagnosisID=<?php echo $patientDiagnosisID; ?>"><button class="delete-btn" style="width: 15%">Yes, archive the diagnosis</button></a>
       <button onclick="goBack()" class="undo-btn" style="width: 15%">No, go back</button>
     </div>
   </div>

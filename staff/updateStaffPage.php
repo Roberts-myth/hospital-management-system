@@ -55,7 +55,6 @@
             $query = "SELECT OccupationID, title FROM Occupation;";
             $result = $db->query($query);
             echo '<select id="occupation" name="occupation" required>';
-            echo '<option value="">Select an occupation</option>';
 
             while ($record = $result->fetchArray(SQLITE3_ASSOC)) {
               if ($record['OccupationID'] == $occupation) {

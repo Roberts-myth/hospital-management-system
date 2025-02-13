@@ -34,6 +34,8 @@
             ?>
             <form action="updatePatientDiagnosis.php" method="post">
 
+                <label for="PatientDiagnosisID">Patient Diagnosis ID</label>
+                <input type="number" id="PatientDiagnosisID" name="PatientDiagnosisID" value="<?php echo $patientDiagnosisID; ?>" readonly>
                 <label for="PatientID">A-Z Patient List (By Surname)</label>
                 <?php
                 $db = new SQLite3('../Hospital Database.db');

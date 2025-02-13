@@ -23,10 +23,10 @@
         <form action="createNewAppointment.php" method="post">
 
             <label for="start-time">Start Time</label>
-            <input type="datetime-local" id="start-time" name="start-time" required>
+            <input type="datetime-local" id="start-time" name="start-time" min="<?php echo date("Y-m-d"); ?>" required>
 
             <label for="end-time">End Time</label>
-            <input type="datetime-local" id="end-time" name="end-time" required>
+            <input type="datetime-local" id="end-time" name="end-time" min="<?php echo date("Y-m-d"); ?>" required>
 
             <label for="reason">Reason</label>
             <input type="text" id="reason" name="reason" placeholder="Reason" required>
@@ -47,7 +47,7 @@
                 echo '</select>';
 
                 ?>
-                <label for="PatientID">A-Z Staff List (By Role/Surname)</label>
+                <label for="StaffID">A-Z Staff List (By Role/Surname)</label>
                 <?php
 
                 $query = "SELECT s.StaffID, o.title, s.first_name || ' ' || coalesce(s.middle_name || '', '') || ' ' || s.last_name AS 'name'

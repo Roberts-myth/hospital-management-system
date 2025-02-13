@@ -52,7 +52,6 @@
               echo "<h1>Appointment was successfully created.</h1>";
             } else {
               echo "<h1>Failed to create Appointment.</h1>";
-              // echo '<button onclick="goBack()" class="undo-btn" style="width: 15%">Go back</button>';
             }            
         } else {
             echo "<h1>Failed to create Appointment.</h1>";

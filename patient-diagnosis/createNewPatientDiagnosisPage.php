@@ -28,7 +28,7 @@
 
                 $result = $db->query($query);
                 echo '<select id="PatientID" name="PatientID" required>';
-                echo '<option value="">Select a Patient</option>';
+                echo '<option value="">Select a patient</option>';
                 while ($record = $result->fetchArray(SQLITE3_ASSOC)) {
                     echo '<option value="' . $record['PatientID'] . '"> [' . $record['PatientID'] . '] ' . $record['Patient Name'] . '</option>';
                 }

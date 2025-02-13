@@ -69,7 +69,7 @@
               <td>' . $diagnosisTitle . '</td>
               <td>' . $symptoms . '</td>
               <td><a href="updateDiagnosisTypePage.php?DiagnosisTypeID=' . $id . '"><button class="update-btn">Update</button></a></td>
-              <td><a href="deleteDiagnosisTypeConfirmationPage.php?DiagnosisTypeID=' . $id . '"><button class="delete-btn">Archive</button></a></td>                    
+              <td><a href="archiveDiagnosisTypeConfirmationPage.php?DiagnosisTypeID=' . $id . '"><button class="delete-btn">Archive</button></a></td>                    
           </tr>';
           }
 

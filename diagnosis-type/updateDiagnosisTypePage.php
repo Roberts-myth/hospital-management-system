@@ -25,7 +25,6 @@
             $result = $statement->execute();
             $record = $result->fetchArray(SQLITE3_ASSOC);
 
-            $diagnosisTypeID = $record['DiagnosisTypeID'];
             $title = $record['title'];
             $symptoms = $record['symptoms'];
 

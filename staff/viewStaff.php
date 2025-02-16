@@ -18,25 +18,49 @@
     <div class="main">
       <h1>List of Staff</h1>
 
-      <form>
+      <form method="get">
+
+        <?php 
+        
+        
+        $firstNameCriteria = isset($_GET['first-name']) ? $_GET['first-name'] : ' ';
+        $middleNameCriteria = isset($_GET['middle-name']) ? $_GET['middle-name'] : ' ';
+        $lastNameCriteria = isset($_GET['last-name']) ? $_GET['last-name'] : ' ';
+        $occupationCriteria = isset($_GET['occupation']) ? $_GET['occupation'] : ' ';
+
+        $firstTime = ($firstNameCriteria == ' ') && ($middleNameCriteria == ' ') && ($lastNameCriteria == ' ') && ($occupationCriteria == ' ');
+        
+        ?>
 
         <label for="first-name">First Name</label>
-        <input type="text" id="first-name" name="first-name" placeholder="First Name">
+        <input type="text" id="first-name" name="first-name" placeholder="First Name" value="<?php echo $firstNameCriteria; ?>">
 
         <label for="middle-name">Middle Name</label>
-        <input type="text" id="middle-name" name="middle-name" placeholder="Middle Name">
+        <input type="text" id="middle-name" name="middle-name" placeholder="Middle Name" value="<?php echo $middleNameCriteria; ?>">
 
         <label for="last-name">Last Name</label>
-        <input type="text" id="last-name" name="last-name" placeholder="Last Name">
+        <input type="text" id="last-name" name="last-name" placeholder="Last Name" value="<?php echo $lastNameCriteria; ?>">
 
         <label for="occupation">Occupation</label>
-        <select id="occupation" name="occupation">
-          <option value="">Select an occupation</option>
-          <option value="Doctor">Doctor</option>
-          <option value="Nurse">Nurse</option>
-          <option value="Psychiatrist">Psychiatrist</option>
-          <option value="Surgeon">Surgeon</option>
-        </select>
+        <?php 
+
+        $db = new SQLite3('../Hospital Database.db');
+        
+        $query = "SELECT OccupationID, title FROM Occupation;";
+        $result = $db->query($query);
+        echo '<select id="occupation" name="occupation" required>';
+        echo '<option value="">Select an occupation</option>';
+
+        while ($record = $result->fetchArray(SQLITE3_ASSOC)) {
+          if ($record['OccupationID'] == $occupationCriteria) {
+            echo '<option value="' . $record['OccupationID'] . '" selected>' . $record['title'] . '</option>';
+          } else {
+            echo '<option value="' . $record['OccupationID'] . '">' . $record['title'] . '</option>';
+          }
+        }
+        echo '</select>';
+        
+        ?>
 
         <!-- <label for="country">Country</label>
         <select id="country" name="country">
@@ -295,7 +319,6 @@
       </form>
 
       <?php
-      $db = new SQLite3('../Hospital Database.db');
 
 
       $recordsPerPage = 5;

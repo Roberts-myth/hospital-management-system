@@ -18,28 +18,58 @@
     <div class="main">
       <h1>List of Diagnosis Types</h1>
 
-      <form>
-        <label>Search fields will be here</label>
+      <?php
+      
+      $titleCriteria = isset($_GET['title']) ? $_GET['title'] : ' ';
+      $symptomKeywordCriteria = isset($_GET['symptom-keyword']) ? $_GET['symptom-keyword'] : ' ';
+
+      $firstTime = ($titleCriteria == ' ') && ($symptomKeywordCriteria == ' ');
+      
+      ?> 
+
+      <form method="get">
+
+        <label for="title">Diagnosis Title</label>
+        <input type="text" id="title" name="title" placeholder="Title" value="<?php if(!$firstTime) { echo $titleCriteria; } ?>">
+        <label for="symptom-keyword">Symptom keyword</label>
+        <input type="text" id="symptom-keyword" name="symptom-keyword" placeholder="Symptom keyword" value="<?php if(!$firstTime) { echo $symptomKeywordCriteria; } ?>">
         <button type="submit">Search</button>
       </form>
 
       <?php
       $db = new SQLite3('../Hospital Database.db');
 
-
+      $criteriaQuery = "SELECT * FROM DiagnosisType WHERE title LIKE '%$titleCriteria%' AND symptoms LIKE '%$symptomKeywordCriteria%'";
+      $totalQuery = "SELECT COUNT(*) AS 'Total' FROM";
       $recordsPerPage = 5;
       $currentPage = isset($_GET['page']) ? intval($_GET['page']) : 1;
       if ($currentPage < 1) {
         $currentPage = 1;
       }
       $offset = ($currentPage - 1) * $recordsPerPage;
-      $totalQuery = "SELECT COUNT(*) AS 'Total' FROM DiagnosisType";
+      $totalQuery = $totalQuery." DiagnosisType;";
+      // if (!$firstTime) {
+      //   $totalQuery = $totalQuery." ($criteriaQuery);";
+      // } else {
+      //   $totalQuery = $totalQuery." DiagnosisType;";
+      // }
+
+      // echo $criteriaQuery;
+      // echo "<br>",$totalQuery;
+      
       $totalResult = $db->query($totalQuery);
       $totalQueryRecord = $totalResult->fetchArray(SQLITE3_ASSOC);
       $totalOfRecords = $totalQueryRecord['Total'];
       $totalPages = ceil($totalOfRecords / $recordsPerPage);
 
-      $query = "SELECT * FROM DiagnosisType LIMIT $recordsPerPage OFFSET $offset;";
+      
+      if (!$firstTime) {
+        $query = $criteriaQuery;
+      } else {
+        $query = "SELECT * FROM DiagnosisType LIMIT $recordsPerPage OFFSET $offset;";
+      }
+
+
       $result = $db->query($query);
       ?>
 
@@ -80,27 +110,30 @@
       </table>
 
       <?php
-      echo '<ul class="pagination">';
-      if ($currentPage > 1) {
-        $previousPage = $currentPage - 1;
-        echo '<li><a href="?page=' . $previousPage . '">&laquo;</a></li>';
-      }
-
-      for ($i = 1; $i <= $totalPages; $i++) {
-        if ($i == $currentPage) {
-          echo '<li class="active"><a>' . $i . '</a></li>';
-        } else {
-          echo '<li><a href="?page=' . $i . '">' . $i . '</a></li>';
+      if ($firstTime) {
+        echo '<ul class="pagination">';
+        if ($currentPage > 1) {
+          $previousPage = $currentPage - 1;
+          echo '<li><a href="?page=' . $previousPage . '">&laquo;</a></li>';
         }
+  
+        for ($i = 1; $i <= $totalPages; $i++) {
+          if ($i == $currentPage) {
+            echo '<li class="active"><a>' . $i . '</a></li>';
+          } else {
+            echo '<li><a href="?page=' . $i . '">' . $i . '</a></li>';
+          }
+        }
+  
+  
+        if ($currentPage < $totalPages) {
+          $nextPage = $currentPage + 1;
+          echo '<li><a href="?page=' . $nextPage . '">&raquo;</a></li>';
+        }
+  
+        echo '</ul>';
       }
 
-
-      if ($currentPage < $totalPages) {
-        $nextPage = $currentPage + 1;
-        echo '<li><a href="?page=' . $nextPage . '">&raquo;</a></li>';
-      }
-
-      echo '</ul>';
       ?>
 
     </div>

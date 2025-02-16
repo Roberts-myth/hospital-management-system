@@ -84,7 +84,7 @@
                 }
                 echo '</select>';
 
-                $db->close()
+                $db->close();
                 ?>
 
                 <button type="submit">Update Appointment</button>

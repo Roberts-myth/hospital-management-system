@@ -30,7 +30,6 @@
             $dateOfDiagnosis = $record['diagnosis_date'];
             $description = $record['description'];
 
-            $db->close();
             ?>
             <form action="updatePatientDiagnosis.php" method="post">
 
@@ -38,7 +37,6 @@
                 <input type="number" id="PatientDiagnosisID" name="PatientDiagnosisID" value="<?php echo $patientDiagnosisID; ?>" readonly>
                 <label for="PatientID">A-Z Patient List (By Surname)</label>
                 <?php
-                $db = new SQLite3('../Hospital Database.db');
 
                 $query = "SELECT PatientID, first_name || ' ' || coalesce(middle_name || '', '') || ' ' || last_name AS 'Patient Name'
                         FROM Patient ORDER BY last_name;";

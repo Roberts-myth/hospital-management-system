@@ -33,13 +33,13 @@
         ?>
 
         <label for="first-name">First Name</label>
-        <input type="text" id="first-name" name="first-name" placeholder="First Name" value="<?php echo $firstNameCriteria; ?>">
+        <input type="text" id="first-name" name="first-name" placeholder="First Name" value="<?php if(!$firstTime) { echo $firstNameCriteria; } ?>">
 
         <label for="middle-name">Middle Name</label>
-        <input type="text" id="middle-name" name="middle-name" placeholder="Middle Name" value="<?php echo $middleNameCriteria; ?>">
+        <input type="text" id="middle-name" name="middle-name" placeholder="Middle Name" value="<?php if(!$firstTime) { echo $middleNameCriteria; } ?>">
 
         <label for="last-name">Last Name</label>
-        <input type="text" id="last-name" name="last-name" placeholder="Last Name" value="<?php echo $lastNameCriteria; ?>">
+        <input type="text" id="last-name" name="last-name" placeholder="Last Name" value="<?php if(!$firstTime) { echo $lastNameCriteria; } ?>">
 
         <label for="occupation">Occupation</label>
         <?php 
@@ -48,7 +48,7 @@
         
         $query = "SELECT OccupationID, title FROM Occupation;";
         $result = $db->query($query);
-        echo '<select id="occupation" name="occupation" required>';
+        echo '<select id="occupation" name="occupation">';
         echo '<option value="">Select an occupation</option>';
 
         while ($record = $result->fetchArray(SQLITE3_ASSOC)) {

@@ -18,7 +18,7 @@
         <h2>Create New Appointment</h2>
 
         <p><b>Warning</b>: Creating an appointment using this form has no appointment clash prevention.
-        <br>If you want to prevent clashing appointments, use the <a href="#">non-admin menu</a> (this hasn't been implemented yet).</p>
+        <br>Please ensure that you are not creating an appointment that clashes with another one by checking with the <a href="viewAppointments.php">View Appointments</a> page.</p>
       
         <form action="createNewAppointment.php" method="post">
 

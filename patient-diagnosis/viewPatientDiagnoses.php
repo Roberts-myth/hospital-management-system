@@ -19,7 +19,18 @@
       <h1>List of Patient Diagnoses</h1>
 
       <form>
-        <label>Search fields will be here</label>
+        <label for="patient-name">Patient Name</label>
+        <input type="text" id="patient-name" name="patient-name" placeholder="Patient Name">
+        
+        <label for="diagnosis-title">Diagnosis Title</label>
+        <input type="text" id="diagnosis-title" name="diagnosis-title" placeholder="Diagnosis Title">
+        
+        <label for="date-of-diagnosis">Date of Diagnosis</label>
+        <input type="date" id="date-of-diagnosis" name="date-of-diagnosis">
+
+        <label for="description">Description keyword</label>
+        <input type="text" id="description" name="description" placeholder="Description keyword">
+
         <button type="submit">Search</button>
       </form>
 

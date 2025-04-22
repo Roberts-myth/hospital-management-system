@@ -19,7 +19,10 @@
       <h1>List of Lab Test Types</h1>
 
       <form>
-        <label>Search fields will be here</label>
+        <label for="name">Lab Test Type Name</label>
+        <input type="text" id="name" name="name" placeholder="Lab Test Type Name">
+        <label for="turnaround-time">Turnaround Time (Hours)</label>
+        <input type="number" id="turnaround-time" name="turnaround-time" placeholder="Turnaround Time (Hours)" step="0.1" min="0">
         <button type="submit">Search</button>
       </form>
 

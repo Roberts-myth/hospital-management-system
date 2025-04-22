@@ -19,7 +19,15 @@
       <h1>List of Lab Test Results</h1>
 
       <form>
-        <label>Search fields will be here</label>
+        <label for="test-type">Test Type</label>
+        <input type="text" id="test-type" name="test-type" placeholder="Test Type">
+
+        <label for="patient-name">Patient Name</label>
+        <input type="text" id="patient-name" name="patient-name" placeholder="Patient Name">
+        
+        <label for="date-of-test">Test Date</label>
+        <input type="date" id="date-of-test" name="date-of-test">
+
         <button type="submit">Search</button>
       </form>
 

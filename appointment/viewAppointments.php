@@ -19,7 +19,12 @@
       <h1>List of Appointments</h1>
 
       <form>
-        <label>Search fields will be here</label>
+        <label for="date-of-appointment">Appointment Date</label>
+        <input type="date" id="date-of-appointment" name="date-of-appointment">
+        <label for="patient-name">Patient Name</label>
+        <input type="text" id="patient-name" name="patient-name" placeholder="Patient Name">
+        <label for="staff-name">Staff Name</label>
+        <input type="text" id="staff-name" name="staff-name" placeholder="Staff Name">        
         <button type="submit">Search</button>
       </form>
 

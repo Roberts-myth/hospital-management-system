@@ -13,7 +13,7 @@ Make sure that SQLite is enabled as an extension. To check this, follow the step
 - Remove the semicolon from the text so that it says `extension=sqlite3`
 - Save your change and close the document
 
-## How to run the program
+## How to run the system
 
 - Click on the `Explorer` button in the XAMMP menu
 - Click on the folder called `htdocs`

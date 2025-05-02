@@ -17,7 +17,7 @@ Make sure that SQLite is enabled as an extension. To check this, follow the step
 
 - Click on the `Explorer` button in the XAMMP menu
 - Click on the folder called `htdocs`
-- Move the codebase folder (extracted, not the zip itself) into the `htdocs` folder
+- Move (or copy) the folder called `hospital-management-system` into the `htdocs` folder
 - Click on the `Start` button on the row labelled `Apache` in the XAMPP menu
 - Go to a web browser and type [localhost/hospital-management-system/index.html](http://localhost/hospital-management-system/index.html) (if you followed the instructions correctly, the link should work)
 
